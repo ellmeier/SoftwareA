@@ -21,7 +21,11 @@ public class ProducerConsumer {
                     println("produced " + number);
 
                     // send number
-                    resource = number;
+                    synchronized(monitor) {
+                        resource = number;
+                        println("notified");
+                        monitor.notifyAll();
+                    }
                 }
             } catch(InterruptedException e) {
                 println("interrupted");
@@ -31,7 +35,16 @@ public class ProducerConsumer {
             try {
                 while(!Thread.interrupted()) {
                     // receive number
-                    int number = resource;
+                    int number;
+                    synchronized(monitor) {
+                        while(resource == 0) {
+                            println("waiting ...");
+                            monitor.wait();
+                            println("woke up ...");
+                        }
+                        number = resource;
+                        resource = 0;
+                    }
 
                     // consume number
                     println("consumed " + number);
@@ -42,6 +55,8 @@ public class ProducerConsumer {
         };
 
         new Thread(producer).start();
+        new Thread(consumer).start();
+        new Thread(consumer).start();
         new Thread(consumer).start();
         new Thread(consumer).start();
         Thread.sleep(5_000);

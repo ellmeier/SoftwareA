@@ -16,6 +16,7 @@ public class DelayedWakeup {
                     println("=> wait");
                     monitor.wait();
                     println("<= wait");
+                    Thread.sleep(1000);
                     println("exit synchronized");
                 }
             } catch(InterruptedException e) {
@@ -27,9 +28,10 @@ public class DelayedWakeup {
             try {
                 synchronized(monitor) {
                     println("enter synchronized");
-                    println("=> notify");
-                    monitor.notify();
-                    println("<= notify");
+                    println("=> notifyAll");
+                    monitor.notifyAll();
+                    println("<= notifyAll");
+                    Thread.sleep(1000);
                     println("exit synchronized");
                 }
             } catch(Exception e) {
@@ -37,6 +39,7 @@ public class DelayedWakeup {
             }
         };
 
+        new Thread(waiter).start();
         new Thread(waiter).start();
         Thread.sleep(1_000);
         new Thread(notifier).start();
