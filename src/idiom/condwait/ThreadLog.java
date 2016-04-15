@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThreadLog {
-    private static long created = System.currentTimeMillis();
+    private static long initialized = System.currentTimeMillis();
+
+    private static long printLastCalled = Long.MAX_VALUE;
 
     private static List<Thread> threads = new ArrayList<>();
 
     private static final int TABWIDTH = 8;
 
     public synchronized static void reset() {
-        created = System.currentTimeMillis();
+        initialized = System.currentTimeMillis();
         threads = new ArrayList<>();
     }
 
@@ -21,10 +23,14 @@ public class ThreadLog {
             threads.add(current);
         final int column = threads.indexOf(current);
         final int indent = column*TABWIDTH + 1;
-        System.out.printf("%5d%" + indent + "s%s",
-                          System.currentTimeMillis() - created,
+        final long now = System.currentTimeMillis();
+        if(printLastCalled/1_000 < now/1_000)
+            System.out.println("------");
+        System.out.printf("%6d%" + indent + "s%s",
+                          now - initialized,
                           "",
                           message);
+        printLastCalled = now;
     }
 
     public synchronized static void println(final String message) {
