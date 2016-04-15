@@ -1,6 +1,7 @@
 package idiom.condwait;
 
 import static idiom.condwait.Operation6.*;
+import static idiom.condwait.ThreadLog.println;
 
 public class OperationsSequential {
     public static void main(String... args) {
@@ -11,6 +12,7 @@ public class OperationsSequential {
             synchronized(monitor) {
                 a2.exec();
                 monitor.notify();
+                println("notified");
             }
             a3.exec();
         };
@@ -18,7 +20,9 @@ public class OperationsSequential {
             b1.exec();
             try {
                 synchronized(monitor) {
+                    println("waiting ...");
                     monitor.wait();
+                    println("woke up");
                     b2.exec();
                 }
             } catch(InterruptedException e) {
