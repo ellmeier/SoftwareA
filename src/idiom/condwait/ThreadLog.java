@@ -3,10 +3,6 @@ package idiom.condwait;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author R. Schiedermeier, rs@cs.hm.edu
- * @version 2016-04-15
- */
 public class ThreadLog {
     private static long created = System.currentTimeMillis();
 

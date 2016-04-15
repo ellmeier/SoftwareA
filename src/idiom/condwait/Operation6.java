@@ -3,10 +3,6 @@ package idiom.condwait;
 import static idiom.condwait.ThreadLog.printf;
 import static java.lang.Math.min;
 
-/**
- * @author R. Schiedermeier, rs@cs.hm.edu
- * @version 2016-04-15
- */
 public enum Operation6 {
     a1, a2, a3, b1, b2, b3;
 
@@ -14,8 +10,11 @@ public enum Operation6 {
 
     static void init(final String... args) {
         int arg = 0;
-        for(Operation6 operation : values())
-            operation.duration = Integer.parseInt(args[min(arg++, args.length - 1)]);
+        if(args.length == 0)
+            init("1000");
+        else
+            for(Operation6 operation : values())
+                operation.duration = Integer.parseInt(args[min(arg++, args.length - 1)]);
     }
 
     public void exec() {
