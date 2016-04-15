@@ -11,8 +11,8 @@ public class OperationsSequential {
         Object monitor = new Object();
         Runnable runAs = () -> {
             a1.exec();
+            a2.exec();
             synchronized(monitor) {
-                a2.exec();
                 ready = true;
                 monitor.notify();
                 println("notified");
@@ -22,18 +22,18 @@ public class OperationsSequential {
         Runnable runBs = () -> {
             b1.exec();
             try {
-                if(!ready) {
-                    Thread.sleep(200);
-                    synchronized(monitor) {
+                synchronized(monitor) {
+                    if(!ready) {
+                        Thread.sleep(200);
                         println("waiting ...");
                         monitor.wait();
                         println("woke up");
                     }
                 }
-                b2.exec();
             } catch(InterruptedException e) {
                 throw new AssertionError(e);
             }
+            b2.exec();
             b3.exec();
         };
         new Thread(runAs).start();
