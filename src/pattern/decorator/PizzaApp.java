@@ -6,7 +6,7 @@ package pattern.decorator;
  */
 public class PizzaApp {
     public static void main(String... args) {
-        Pizza pizza = new Crunchy();
+        Pizza pizza = Base.Crunchy;
         pizza = new Cheese(pizza);
         pizza = new Cheese(pizza);
         pizza = new Salami(pizza);
