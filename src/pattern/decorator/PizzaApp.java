@@ -10,6 +10,8 @@ public class PizzaApp {
         pizza = new Cheese(pizza);
         pizza = new Cheese(pizza);
         pizza = new Salami(pizza);
+        pizza = new Spice(pizza);
+        pizza = new Spice(pizza);
 
         System.out.println(pizza.getPrice());
         System.out.println(pizza.isHot());
