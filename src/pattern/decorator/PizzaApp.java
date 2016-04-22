@@ -6,7 +6,10 @@ package pattern.decorator;
  */
 public class PizzaApp {
     public static void main(String... args) {
-        Pizza pizza = new Cheese(new Cheese(new Crunchy()));
+        Pizza pizza = new Crunchy();
+        pizza = new Cheese(pizza);
+        pizza = new Cheese(pizza);
+        pizza = new Salami(pizza);
 
         System.out.println(pizza.getPrice());
         System.out.println(pizza.isHot());
