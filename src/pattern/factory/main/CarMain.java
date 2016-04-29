@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class CarMain {
     public static void main(String... args) {
-        Factory factory = new Factory();
+        Factory factory = Factory.get();
 
         Collection<Car> cars = Stream.of(args)
                 .map(factory::make)

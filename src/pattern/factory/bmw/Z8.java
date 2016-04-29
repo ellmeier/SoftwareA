@@ -1,12 +1,12 @@
-package pattern.factory;
+package pattern.factory.bmw;
 
 /**
  * @author R. Schiedermeier, rs@cs.hm.edu
  * @version 2016-04-29
  */
-public class Z8 extends Car {
+public class Z8 extends BMWCar {
     public Z8() {
-        super("BWM", "Z8");
+        super("Z8");
     }
 
     public Z8 drive() {

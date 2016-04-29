@@ -9,7 +9,7 @@ public abstract class Car {
     private final String model;
     private int kilometers;
 
-    Car(String maker, String model) {
+    public Car(String maker, String model) {
         this.maker = maker;
         this.model = model;
     }
@@ -20,7 +20,7 @@ public abstract class Car {
         return kilometers;
     }
 
-    void addKilometers(int kilometers) {
+    public void addKilometers(int kilometers) {
         this.kilometers += kilometers;
     }
 

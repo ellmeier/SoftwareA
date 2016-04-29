@@ -1,12 +1,12 @@
-package pattern.factory;
+package pattern.factory.bmw;
 
 /**
  * @author R. Schiedermeier, rs@cs.hm.edu
  * @version 2016-04-29
  */
-public class Isetta extends Car {
+public class Isetta extends BMWCar {
     public Isetta() {
-        super("BMW", "Isetta");
+        super("Isetta");
     }
 
     public Isetta drive() {

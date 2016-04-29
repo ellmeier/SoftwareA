@@ -1,12 +1,12 @@
-package pattern.factory;
+package pattern.factory.vw;
 
 /**
  * @author R. Schiedermeier, rs@cs.hm.edu
  * @version 2016-04-29
  */
-public class Golf extends Car {
+public class Golf extends VWCar {
     public Golf() {
-        super("VW", "Golf");
+        super("Golf");
     }
 
     public Golf drive() {
