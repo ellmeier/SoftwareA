@@ -21,10 +21,6 @@ public class Isetta {
 
     @Override
     public String toString() {
-        return "Isetta{" +
-                "maker='" + maker + '\'' +
-                ", model='" + model + '\'' +
-                ", kilometers=" + kilometers +
-                '}';
+        return  maker + ' ' + model + ", kilometers=" + kilometers;
     }
 }
